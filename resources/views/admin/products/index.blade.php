@@ -12,6 +12,7 @@
       <th scope="col">Name</th>
       <th scope="col">Price</th>
       <th scope="col">Detail</th>
+      <th scope="col">Action</th>
     </tr>
   </thead>
   @if(count($products) > 0)
@@ -19,10 +20,15 @@
   <tbody>
     <tr>
       <th scope="row">{{ $product->id }}</th>
-      <td> <img width="50" src="images/{{ $product->file ? $product->file : '' }}"> </td>
-      <td>{{ $product->name }}</td>
+      <td> <img width="50" src="{{ asset($product->file ) }}"> </td>
+      <td><a href="{{ url('products/'.$product->id) }}">{{ $product->name }}</a></td>
       <td>{{ $product->price }}</td>
       <td>{{ $product->detail }}</td>
+      <td>
+        {!!Form::open(['method'=>'DELETE','action'=>['ProductController@destroy',$product->id]])!!}
+           {{ Form::submit('delete',['class'=>'btn btn-danger']) }}
+        {!!Form::close()!!}
+      </td>
     </tr>
   </tbody>
  @endforeach
