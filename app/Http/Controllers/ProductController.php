@@ -60,8 +60,11 @@ class ProductController extends Controller
     }
 
 
-    public function destroy(Product $product)
+    public function destroy($id)
     {
-        //
+      $product = Product::find($id);
+      unlink(public_path().'/images/'.$product->file);
+      $product->delete();
+      return back();
     }
 }

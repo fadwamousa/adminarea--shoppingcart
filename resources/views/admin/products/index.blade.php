@@ -20,7 +20,7 @@
   <tbody>
     <tr>
       <th scope="row">{{ $product->id }}</th>
-      <td> <img width="50" src="{{ asset($product->file ) }}"> </td>
+      <td> <img width="50" src="{{ asset('/images/'.$product->file ) }}"> </td>
       <td><a href="{{ url('products/'.$product->id) }}">{{ $product->name }}</a></td>
       <td>{{ $product->price }}</td>
       <td>{{ $product->detail }}</td>
