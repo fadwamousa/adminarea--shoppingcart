@@ -1,7 +1,7 @@
 @extends('admin.layouts.master')
-@section('title','Products')
+@section('title','Orders')
 @section('page')
-    Product
+The Order is 
 @stop
 @section('content')
 <table class="table">

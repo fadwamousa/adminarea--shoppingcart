@@ -58,6 +58,8 @@
         <div class="content">
             <div class="container-fluid">
 
+              @include('admin.layouts.message')
+
                 @yield('content')
 
             </div>

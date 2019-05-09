@@ -1,7 +1,7 @@
 @extends('admin.layouts.master')
-@section('title','Products')
+@section('title','Orders')
 @section('page')
-   All Product
+   All Orders
 @stop
 @section('content')
 <table class="table">
@@ -15,8 +15,7 @@
       <th scope="col">Action</th>
     </tr>
   </thead>
-  @if(count($products) > 0)
-  @foreach($products as $product)
+
   <tbody>
     <tr>
       <th scope="row"><a href="{{ url('products/'.$product->id) }}">{{ $product->id }}</a></th>
@@ -31,8 +30,6 @@
       </td>
     </tr>
   </tbody>
- @endforeach
- @endif
- {{ $products->render() }}
+
 </table>
 @stop

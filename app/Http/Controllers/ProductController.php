@@ -41,22 +41,32 @@ class ProductController extends Controller
 
     public function show($id)
     {
-        //
 
-        $product = Product::find($id);
-        return view('admin.products.details',compact('product'));
+      $product = Product::find($id);
+      return view('admin.products.details',compact('product'));
+
     }
 
 
-    public function edit(Product $product)
+    public function edit($id)
     {
-        //
+      $product = Product::find($id);
+      return view('admin.products.edit',compact('product'));
     }
 
 
     public function update(Request $request, Product $product)
     {
-        //
+      $input   = $request->all();
+      if($file = $request->file('file')){
+
+        $name_file = time(). $file->getClientOriginalName();
+        $file->move('images',$name_file);
+        $input['file'] = $name_file;
+      }
+      $product->update($input);
+      Session::flash('msg','Product Updated');
+      return redirect('/products');
     }
 
 
