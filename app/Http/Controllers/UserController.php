@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\User;
+use App\Order;
 class UserController extends Controller
 {
     /**
@@ -13,7 +14,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $users = User::all();
+        return view('admin.users.index',compact('users'));
     }
 
     /**
@@ -45,7 +47,10 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+      //  $user = User::find($id);
+     //   $user->orders;
+        $orders = Order::where('user_id',$id)->with('products')->get();
+        return view('admin.users.details',compact('orders'));
     }
 
     /**

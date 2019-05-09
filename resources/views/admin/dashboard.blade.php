@@ -45,14 +45,14 @@
                         <div class="col-xs-7">
                             <div class="numbers">
                                 <p>Products</p>
-
+                                 {{ $product->count() }}
                             </div>
                         </div>
                     </div>
                     <div class="footer">
                         <hr/>
                         <div class="stats">
-                            <a href=""><i class="ti-panel"></i> Details</a>
+                            <a href="{{ url('products') }}"><i class="ti-panel"></i> Details</a>
                         </div>
                     </div>
                 </div>
@@ -70,6 +70,7 @@
                         <div class="col-xs-7">
                             <div class="numbers">
                                 <p>Orders</p>
+                                {{ $order->count() }}
 
                             </div>
                         </div>
@@ -77,7 +78,7 @@
                     <div class="footer">
                         <hr/>
                         <div class="stats">
-                            <a href=""><i class="ti-panel"></i> Orders</a>
+                            <a href="{{ url('orders') }}"><i class="ti-panel"></i> Orders</a>
                         </div>
                     </div>
                 </div>
@@ -95,14 +96,14 @@
                         <div class="col-xs-7">
                             <div class="numbers">
                                 <p>Users</p>
-
+                                {{ $user->count() }}
                             </div>
                         </div>
                     </div>
                     <div class="footer">
                         <hr/>
                         <div class="stats">
-                            <a href=""><i class="ti-panel"></i> Users</a>
+                            <a href="{{ url('users') }}"><i class="ti-panel"></i> Users</a>
                         </div>
                     </div>
                 </div>

@@ -83,6 +83,7 @@
                 <th>Name</th>
                 <th>detail</th>
                 <th>price</th>
+                <th>Image</th>
               </tr>
             </thead>
 
@@ -113,12 +114,20 @@
                    @endforeach
                 </td>
 
+                <td>
+                   @foreach($order->products as $product)
+                     <img  width="80" src="{{ asset('/images/'.$product->file) }}" alt="">
+                   @endforeach
+                </td>
+
 
 
               </tr>
             </tbody>
           </table>
         </div>
+
+        <a href="{{ url('/orders') }}" class="btn btn-success">Back To Orders</a>
 
 
 @stop
