@@ -1,12 +1,26 @@
 <?php
 
+Route::group(['prefix'=>'admin'],function(){
 
-Route::get('/admin','DashboardController@index');
+  Route::group(['middleware'=>'auth:admin'],function(){
 
-Route::resource('products','ProductController');
-Route::resource('orders','OrderController');
-Route::resource('users','UserController');
+    Route::get('/','DashboardController@index');
+
+    Route::resource('products','ProductController');
+    Route::resource('orders','OrderController');
+    Route::resource('users','UserController');
+
+    //Admin Logout
+    Route::get('logout','AdminUserController@logout');
+
+  });
+  //Admin routes
+
+  Route::get('/login','AdminUserController@index');
+  Route::post('/login','AdminUserController@store');
+
+});
 
 
-Route::get('admin/login','AdminUserController@index');
-Route::post('admin/login','AdminUserController@store');
+//Front Layouts routes
+Route::get('/front','Front\HomeController@index');

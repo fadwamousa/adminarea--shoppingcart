@@ -18,9 +18,9 @@
   @foreach($users as $user)
   <tbody>
     <tr>
-      <th scope="row"><a href="{{ url('users/'.$user->id) }}">{{ $user->id }}</a></th>
+      <th scope="row"><a href="{{ url('admin/users/'.$user->id) }}">{{ $user->id }}</a></th>
 
-      <td><a href="{{ url('users/'.$user->id.'/edit') }}">{{ $user->name }}</a></td>
+      <td><a href="{{ url('admin/users/'.$user->id.'/edit') }}">{{ $user->name }}</a></td>
       <td>{{ $user->email }}</td>
       <td>{{ $user->created_at->diffForHumans() }}</td>
       <td>

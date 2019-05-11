@@ -12,21 +12,28 @@ class AdminUserController extends Controller
     }
 
     public function store(Request $request){
-      //valiadte the Log
-      $this->validate($request,['email'=>'required|email','password'=>'required']);
 
-      //Attempt Login
-      $credinatils = $request->only('email','password');
-      if(! Auth::guard('admin')->attempt($credinatils)){
+       //Validator
+       $this->validate($request,['email'=>'required','password'=>'required']);
 
-        return back()->withErrors(['message'=>'Wrong Credinatils please try again']);
-      }
+       $credintails = $request->only(['email','password']);
 
-      //Session
-      session()->flash('msg','Goog Welcome back');
-      //redirect
-      return redirect('/admin');
-
-
+       //check
+       if(! Auth::guard('admin')->attempt($credintails) ){
+         session()->flash('msg','Some Error Here Please try again');
+         return redirect()->back();
+       }else{
+         session()->flash('msg','Welcome back');
+         return redirect('/admin');
+       }
     }
+
+
+    public function logout(){
+      auth()->guard('admin')->logout();
+      session()->flash('msg','You have Logged Out');
+
+      return redirect('admin/login');
+    }
+
 }

@@ -23,7 +23,7 @@
 @foreach($orders as $order)
   <tbody>
     <tr>
-      <th scope="row"><a href="{{ url('orders/'.$order->id) }}">{{ $order->id }}</a></th>
+      <th scope="row"><a href="{{ url('admin/orders/'.$order->id) }}">{{ $order->id }}</a></th>
       <td>{{ $order->user->name }}</td>
       <td>{{ $order->address }}</td>
       <td>

@@ -45,9 +45,19 @@
 
                     <div class="panel-body">
 
-                        <form method="post" action="/admin/login">
-                          @csrf
 
+                          {!!Form::open(['method'=>'POST','action'=>'AdminUserController@store'])!!}
+
+                            @csrf
+
+                            @if(count($errors) > 0)
+                            @foreach($errors->all() as $error)
+                            <div class="alert alert-danger">
+                              {{ $error }}
+                            </div>
+                            @endforeach
+
+                            @endif
                             <div class="form-group">
                                 <label for="email">Email:</label>
                                 <input type="email" name="email" id="email" placeholder="Email"
@@ -64,7 +74,7 @@
                                 <button class="btn btn-primary" type="submit">Sign In</button>
                             </div>
 
-                        </form>
+                        {!!Form::close()!!}
 
                     </div>
                 </div>

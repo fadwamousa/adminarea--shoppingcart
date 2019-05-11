@@ -66,7 +66,7 @@ class ProductController extends Controller
       }
       $product->update($input);
       Session::flash('msg','Product Updated');
-      return redirect('/products');
+      return redirect('admin/products');
     }
 
 

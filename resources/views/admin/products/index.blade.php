@@ -19,9 +19,9 @@
   @foreach($products as $product)
   <tbody>
     <tr>
-      <th scope="row"><a href="{{ url('products/'.$product->id) }}">{{ $product->id }}</a></th>
+      <th scope="row"><a href="{{ url('admin/products/'.$product->id) }}">{{ $product->id }}</a></th>
       <td> <img width="50" src="{{ asset('/images/'.$product->file ) }}"> </td>
-      <td><a href="{{ url('products/'.$product->id.'/edit') }}">{{ $product->name }}</a></td>
+      <td><a href="{{ url('admin/products/'.$product->id.'/edit') }}">{{ $product->name }}</a></td>
       <td>{{ $product->price }}</td>
       <td>{{ $product->detail }}</td>
       <td>
