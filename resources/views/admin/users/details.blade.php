@@ -32,7 +32,7 @@
       <td>
         @foreach ($orders as $order)
         @foreach ($order->products as $product)
-           $product->pivot->qty
+          {{ $product->pivot->qty }}
         @endforeach
         @endforeach
 
@@ -41,7 +41,7 @@
       <td>
         @foreach ($orders as $order)
         @foreach ($order->products as $product)
-           $product->pivot->price
+           {{ $product->pivot->price  }}
         @endforeach
         @endforeach
 
