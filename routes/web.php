@@ -35,3 +35,8 @@ Route::get('/user/profile','Front\ProfileController@index');
 Route::get('/user/order/{id}','Front\ProfileController@show');
 Route::get('/cart','Front\CartController@index');
 Route::post('/cart','Front\CartController@store')->name('cart');
+
+//this is remove all cart items in the website 
+Route::get('empty',function(){
+  Cart::instance('default')->destroy();
+});

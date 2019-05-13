@@ -5,7 +5,7 @@
     <h2 class="mt-5"><i class="fa fa-shopping-cart"></i> Shopping Cart</h2>
     <hr>
 
-
+        @if(Cart::instance('default')->count() > 0)
 
         <h4 class="mt-5"></h4>
 
@@ -31,7 +31,7 @@
 
                         <tbody>
 
-
+                         
 
                             <tr>
                                 <td><img src="" style="width: 5em"></td>
@@ -98,7 +98,7 @@
                     <a href="/checkout" class="btn btn-outline-info">Proceed to checkout</a>
                     <hr>
                 </div>
-
+                @endif
                     <h3>There is not item in your Cart</h3>
                     <a href="/" class="btn btn-outline-dark">Continue Shopping</a>
                     <hr>
