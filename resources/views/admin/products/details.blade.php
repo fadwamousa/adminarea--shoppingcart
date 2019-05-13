@@ -1,31 +1,62 @@
 @extends('admin.layouts.master')
-@section('title','Products')
-@section('page')
-    Product
-@stop
 @section('content')
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Image</th>
-      <th scope="col">Name</th>
-      <th scope="col">Price</th>
-      <th scope="col">Detail</th>
-      <th scope="col">Created-at</th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <tr>
-      <th scope="row">{{ $product->id }}</th>
-      <td> <img width="150" class="img-responsive" src="{{ asset('/images/'.$product->file ) }}"> </td>
-      <td>{{ $product->name }}</td>
-      <td>{{ $product->price }}</td>
-      <td>{{ $product->detail }}</td>
-      <td>{{ $product->created_at->diffForHumans() }}</td>
-    </tr>
-  </tbody>
+                <div class="row">
 
-</table>
-@stop
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="header">
+                                <h4 class="title">Product Detail</h4>
+                                <p class="category">List of all stock</p>
+                            </div>
+                            <div class="content table-responsive table-full-width">
+                                <table class="table table-striped">
+                                    <tbody>
+
+                                        <tr>
+                                            <th>ID</th>
+                                            <td>{{ $product->id }}</td>
+                                        </tr>
+
+                                        <tr>
+                                            <th>Name</th>
+                                            <td>{{$product->name}}</td>
+                                        </tr>
+
+                                        <tr>
+                                            <th>Description</th>
+                                            <td>{{ $product->detail }}</td>
+                                        </tr>
+
+                                        <tr>
+                                            <th>Price</th>
+                                            <td>{{ $product->price }}</td>
+                                        </tr>
+
+                                        <tr>
+                                            <th>Created At</th>
+                                            <td>{{ $product->created_at->diffForHumans() }}</td>
+                                        </tr>
+
+                                        <tr>
+                                            <th>Updated At</th>
+                                            <td>{{ $product->updated_at->diffForHumans() }}o</td>
+                                        </tr>
+
+                                        <tr>
+                                            <th>Image</th>
+                                            <td><img src="/images/{{ asset($product->file) }}" alt="" class="img-thumbnail" style="width: 150px;"></td>
+                                        </tr>
+
+                                    </tbody>
+
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+@endsection

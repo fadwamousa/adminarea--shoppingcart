@@ -23,4 +23,13 @@ Route::group(['prefix'=>'admin'],function(){
 
 
 //Front Layouts routes
-Route::get('/front','Front\HomeController@index');
+Route::get('/','Front\HomeController@index');
+
+Route::get('user/login','Front\SessionsController@index');
+Route::post('user/login','Front\SessionsController@store');
+Route::get('user/logout','Front\SessionsController@logout');
+Route::get('user/register','Front\RegisterController@index');
+Route::post('user/register','Front\RegisterController@store');
+
+Route::get('/user/profile','Front\ProfileController@index');
+Route::get('/user/order/{id}','Front\ProfileController@show');
