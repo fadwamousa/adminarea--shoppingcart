@@ -33,3 +33,5 @@ Route::post('user/register','Front\RegisterController@store');
 
 Route::get('/user/profile','Front\ProfileController@index');
 Route::get('/user/order/{id}','Front\ProfileController@show');
+Route::get('/cart','Front\CartController@index');
+Route::post('/cart','Front\CartController@store')->name('cart');
