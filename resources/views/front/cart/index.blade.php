@@ -27,42 +27,49 @@
 
                     @endif
 
+
+
                     <table class="table">
 
                         <tbody>
 
-                         
+                          @foreach( Cart::instance('default')->content() as $item)
 
                             <tr>
-                                <td><img src="" style="width: 5em"></td>
+                                <td><img src="{{ asset('/images/'.$item->model->file) }}" style="width: 5em"></td>
                                 <td>
-                                    <strong></strong><br>
+                                    <strong>{{ $item->model->name }}</strong><br>{{ $item->model->detail }}
                                 </td>
 
                                 <td>
 
-                                    <form action="" method="post">
+                                   {!!Form::open(['method'=>'DELETE','action'=>['Front\CartController@destroy',$item->rowId]])!!}
 
-                                        <button type="submit" class="btn btn-link btn-link-dark">Remove</button>
-                                    </form>
+                                      <button type="submit" class="btn btn-link btn-link-dark">Remove</button>
+                                  {!!Form::close()!!}
 
-                                    <form action="" method="post">
+                                   {!!Form::open(['method'=>'POST','action'=>['Front\CartController@savelater',$item->rowId]])!!}
 
-                                        @csrf
+                                      @csrf
 
-                                        <button type="submit" class="btn btn-link btn-link-dark">Save for later</button>
+                                      <button type="submit" class="btn btn-link btn-link-dark">Save for later</button>
 
-                                    </form>
+                                  {!!Form::close()!!}
 
                                 </td>
 
+                                <td>
+                                    <select class="form-control quantity" style="width: 4.7em" data-id="{{ $item->rowId }}">
+                                       @for ($i = 1; $i < 5 + 1; $i++)
+                                        <option {{ $item->qty == $i ? 'selected' : '' }}>{{$i}}</option>
+                                      @endfor
 
+                                    </select>
+                                </td>
 
-                                <td></td>
+                                <td>${{ $item->total()}}</td>
                             </tr>
-
-
-
+                        @endforeach
                         </tbody>
 
                     </table>
@@ -79,85 +86,109 @@
                             </thead>
                             <tr>
                                 <td>Subtotal</td>
-                                <td></td>
+                                <td>${{ Cart::subTotal() }}</td>
                             </tr>
                             <tr>
                                 <td>Tax</td>
-                                <td></td>
+                                <td>${{ Cart::tax() }}</td>
                             </tr>
                             <tr>
                                 <th>Total</th>
-                                <th></th>
+                                <th>${{ Cart::total() }}</th>
                             </tr>
                         </table>
                     </div>
                 </div>
                 <!-- Save for later  -->
                 <div class="col-md-12">
-                    <a href="/" class="btn btn-outline-dark">Continue Shopping</a>
-                    <a href="/checkout" class="btn btn-outline-info">Proceed to checkout</a>
+                    <a href="{{ url('/') }}" class="btn btn-outline-dark">Continue Shopping</a>
+                    <a href="{{ url('/checkout') }}" class="btn btn-outline-info">Proceed to checkout</a>
                     <hr>
                 </div>
+
+                @else
+                <h4>There is no items in cart</h4>
+                <a href="/" class="btn btn-outline-dark">Continue Shopping</a>
+                <hr>
                 @endif
-                    <h3>There is not item in your Cart</h3>
-                    <a href="/" class="btn btn-outline-dark">Continue Shopping</a>
-                    <hr>
 
-
-
-
+                @if(Cart::instance('saveForLater')->count() > 0)
 
                     <div class="col-md-12">
 
-                        <h4></h4>
+                        <h4>{{ Cart::instance('saveForLater')->count() }} Items in  Save For Later</h4>
                         <table class="table">
+                          <tbody>
+                          @foreach( Cart::instance('saveForLater')->content() as $item)
 
-                            <tbody>
+                            <tr>
+                                <td><img src="{{ asset('/images/'.$item->model->file) }}" style="width: 5em"></td>
+                                <td>
+                                    <strong>{{ $item->model->name }}</strong><br>{{ $item->model->detail }}
+                                </td>
 
+                                <td>
 
+                                   {!!Form::open(['method'=>'DELETE','action'=>['Front\CartController@destroy',$item->rowId]])!!}
 
-                                <tr>
-                                    </td>
-                                    <td>
-                                        <strong></strong><br>
-                                    </td>
+                                      <button type="submit" class="btn btn-link btn-link-dark">Remove</button>
+                                  {!!Form::close()!!}
 
-                                    <td>
+                                   {!!Form::open(['method'=>'POST','action'=>['Front\CartController@savelater',$item->rowId]])!!}
 
-                                        <form action="" method="post">
+                                      @csrf
 
-                                            <button type="submit" class="btn btn-link btn-link-dark">Remove</button>
-                                        </form>
+                                      <button type="submit" class="btn btn-link btn-link-dark">Save for later</button>
 
-                                        <form action="" method="post">
+                                  {!!Form::close()!!}
 
+                                </td>
 
+                                <td>
+                                    <select class="form-control quantity" style="width: 4.7em" data-id="{{ $item->rowId }}">
+                                       @for ($i = 1; $i < 5 + 1; $i++)
+                                        <option {{ $item->qty == $i ? 'selected' : '' }}>{{$i}}</option>
+                                      @endfor
 
-                                            <button type="submit" class="btn btn-link btn-link-dark">Move to cart
-                                            </button>
+                                    </select>
+                                </td>
 
-                                        </form>
-
-                                    </td>
-
-                                    <td>
-                                        <select name="" id="" class="form-control" style="width: 4.7em">
-                                            <option value="">1</option>
-                                            <option value="">2</option>
-                                        </select>
-                                    </td>
-
-                                </tr>
-
-
-
-                            </tbody>
+                                <td>${{ $item->total()}}</td>
+                            </tr>
+                        @endforeach
+                        </tbody>
 
                         </table>
 
+                        </div>
+                        <!-- Price Details -->
+                        <div class="col-md-6">
+                        <div class="sub-total">
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                            <tr>
+                                <th colspan="2">Price Details</th>
+                            </tr>
+                            </thead>
+                            <tr>
+                                <td>Subtotal</td>
+                                <td>${{ Cart::subTotal() }}</td>
+                            </tr>
+                            <tr>
+                                <td>Tax</td>
+                                <td>${{ Cart::tax() }}</td>
+                            </tr>
+                            <tr>
+                                <th>Total</th>
+                                <th>${{ Cart::total() }}</th>
+                            </tr>
+                        </table>
+                        </div>
+                        </div>
+
                     </div>
 
-
+               @endif
             </div>
 
         </div>

@@ -8,7 +8,7 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href=""><i class="fa fa-shopping-cart"></i> Cart
+                    <a class="nav-link" href="{{ url('cart') }}"><i class="fa fa-shopping-cart"></i> Cart
                       <strong>
                         @if(Cart::instance('default')->count() > 0)
                         ({{ Cart::instance('default')->count() }})
