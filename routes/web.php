@@ -42,3 +42,7 @@ Route::get('empty',function(){
 });
 Route::delete('/cart/remove/{product}','Front\CartController@destroy');
 Route::post('/cart/savelater/{product}','Front\CartController@savelater');
+
+Route::delete('/save/remove/{product}','Front\SaveController@remove');
+
+Route::post('/cart/move/{product}','Front\SaveController@move');

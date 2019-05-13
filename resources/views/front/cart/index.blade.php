@@ -129,18 +129,18 @@
 
                                 <td>
 
-                                   {!!Form::open(['method'=>'DELETE','action'=>['Front\CartController@destroy',$item->rowId]])!!}
+                                   {!!Form::open(['method'=>'DELETE','action'=>['Front\SaveController@remove',$item->rowId]])!!}
 
                                       <button type="submit" class="btn btn-link btn-link-dark">Remove</button>
-                                  {!!Form::close()!!}
-
-                                   {!!Form::open(['method'=>'POST','action'=>['Front\CartController@savelater',$item->rowId]])!!}
-
-                                      @csrf
-
-                                      <button type="submit" class="btn btn-link btn-link-dark">Save for later</button>
 
                                   {!!Form::close()!!}
+
+                                  {!!Form::open(['method'=>'POST','action'=>['Front\SaveController@move',$item->rowId]])!!}
+
+                                     <button type="submit" class="btn btn-link btn-link-dark">Move To Cart</button>
+
+                                 {!!Form::close()!!}
+
 
                                 </td>
 
