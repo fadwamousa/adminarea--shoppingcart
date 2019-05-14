@@ -46,3 +46,5 @@ Route::post('/cart/savelater/{product}','Front\CartController@savelater');
 Route::delete('/save/remove/{product}','Front\SaveController@remove');
 
 Route::post('/cart/move/{product}','Front\SaveController@move');
+Route::get('checkout','CheckoutController@index');
+Route::post('checkout','CheckoutController@store')->name('checkout');
